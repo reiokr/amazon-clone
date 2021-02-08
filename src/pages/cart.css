@@ -1,0 +1,128 @@
+.wrapper {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 50px;
+}
+.cart-header {
+  width: 100%;
+}
+.cart {
+  display: flex;
+  padding: 20px;
+  background: white;
+  height: max-content;
+  max-width: 1500px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.cart__left {
+  width: 65%;
+}
+.cart__right {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 35%;
+  height: max-content;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.cart-item {
+  display: flex;
+  margin-right: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.cart-item > img {
+  width: auto;
+  height: 100px;
+  margin-right: 30px;
+}
+.cart-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.cart-item-footer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.cart-items-buttons {
+  width: max-content;
+  margin: 0 0 0 auto;
+  display: flex;
+  align-self: center;
+  align-items: center;
+}
+
+.change-btn {
+  background: none;
+  border: 0;
+  color: #f0c14b;
+  font-size: 1.2rem !important;
+  cursor: pointer;
+  margin-top: 7px;
+}
+
+.cart-item-price {
+  align-self: center;
+}
+.back-home {
+  background: #f0c14b;
+  border: 1px solid;
+  margin-top: 10px;
+  border-color: #a88734 #9c7e31 #846a29;
+  color: #111;
+  border-radius: 2px;
+  cursor: pointer;
+  align-self: flex-end;
+  font-size: 1rem;
+}
+
+.cart-items-count,
+.cart-items-amount {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  padding: 0 5px;
+  margin-left: 5px;
+  font-weight: bold;
+}
+.total-items,
+.total-price {
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: space-between;
+  max-width: 100%;
+  margin-top: 10px;
+}
+.cart-items-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 4fr 1fr 1fr;
+  align-items: center;
+}
+
+.cart-items-title {
+  font-size: 0.9rem;
+}
+
+.cart-items-amount {
+  justify-self: flex-end;
+  font-weight: normal;
+}
+
+.cart-items-prices {
+  font-weight: normal;
+  text-align: right;
+  margin: 5px 0;
+}
+.line {
+  width: 100%;
+  margin: 3px 0;
+  height: 2px;
+  background-color: #ccc;
+}
