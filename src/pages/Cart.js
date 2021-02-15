@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { useGlobal } from '../context'
-import CartItem from '../components/CartItem'
 import './cart.css'
+import React, { useEffect, useState } from 'react'
+import CartItem from '../components/CartItem'
 import { Link } from 'react-router-dom'
+import { useGlobal } from '../context'
 
 const Cart = () => {
-  const { cartItems, cartItemsCount } = useGlobal()
+  const { cartItems, ...state } = useGlobal()
   const [subtotal, setSubTotal] = useState(0)
 
   useEffect(() => {
     let total = 0
+
     cartItems.map((item) => {
       total += item.price * item.amount
       return total
@@ -17,9 +18,11 @@ const Cart = () => {
     setSubTotal(total)
   }, [cartItems])
 
+  // console.log(state.cart)
   return (
     <div className='wrapper'>
       <div className='cart-header'>
+        <h3>Hello, {state.user?.email}</h3>
         <h1>Your Basket</h1>
       </div>
       <div className='cart'>
@@ -32,7 +35,7 @@ const Cart = () => {
           <h2>Subtotal</h2>
           <div className='total-items'>
             Total items in cart:{' '}
-            <span className='cart-items-count'>{cartItemsCount}</span>
+            <span className='cart-items-count'>{state.cartItemsCount}</span>
           </div>
           <hr />
           <div className='cart-items'>

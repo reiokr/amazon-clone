@@ -38,12 +38,15 @@
   display: flex;
   justify-content: space-evenly;
 }
-.header__option {
+.header__option,
+.header__link {
   display: flex;
   flex-direction: column;
   margin: 0 10px;
   color: #fff;
+  text-decoration: none;
 }
+.header__optionLineOne,
 .header__optionLineOne {
   font-size: 0.8rem;
 }
