@@ -27,9 +27,14 @@ const reducer = (state, action) => {
             rating: evaluate_rate,
             url: product_detail_url,
             bestSeller: isBestSeller,
+            amount: 0,
           }
         }),
       }
+
+    case 'ADD_TO_CART':
+      action.payload.amount = 1
+      return { ...state, cart: [...state.cart, action.payload] }
 
     case 'LOG_IN_USER':
       return { ...state, user: action.payload }
@@ -40,13 +45,16 @@ const reducer = (state, action) => {
     case 'CHANGE_AMOUNT':
       return {
         ...state,
-        cartItems: state.cartItems
+        cart: state.cart
           .map((product) => {
             if (product.id === action.payload.id) {
-              return { ...product, amount: product.amount - 1 }
-            } else {
-              return { ...product, amount: product.amount + 1 }
+              if (action.payload.type === 'dec') {
+                return { ...product, amount: product.amount - 1 }
+              } else {
+                return { ...product, amount: product.amount + 1 }
+              }
             }
+            return product
           })
           .filter((product) => product.amount !== 0),
       }

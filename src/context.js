@@ -14,7 +14,6 @@ const initialState = {
   loading: false,
   products: [],
   user: null,
-  cartItemsCount: 0,
   keyword: localStorage.getItem('kw') || 'iphone7',
   cart: [],
 }
@@ -23,7 +22,7 @@ const ContextAPI = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState('')
-  const [cartItems, setCartItems] = useState([])
+  const [cartItemsCount, setCartItemsCount] = useState(0)
 
   const getProducts = useCallback(async () => {
     await dispatch({ type: 'GET_PRODUCTS', payload: dataJson })
@@ -40,12 +39,28 @@ const ContextAPI = ({ children }) => {
   }
 
   const addToCart = (_id) => {
-    console.log(_id)
+    if (state.cart.find((item) => item.id === _id)) {
+      changeAmount(_id, 'asc')
+    } else {
+      dispatch({
+        type: 'ADD_TO_CART',
+        payload: state.products.find((item) => item.id === _id),
+      })
+    }
   }
 
   const changeAmount = (id, type) => {
     dispatch({ type: 'CHANGE_AMOUNT', payload: { id, type } })
   }
+
+  useEffect(() => {
+    let count = 0
+    state.cart.map((item) => {
+      count += item.amount
+      return count
+    })
+    setCartItemsCount(count)
+  }, [state.cart])
 
   useEffect(() => {
     changePage()
@@ -69,7 +84,7 @@ const ContextAPI = ({ children }) => {
         ...state,
         totalPages,
         page,
-        cartItems,
+        cartItemsCount,
         searchKeyword,
         changePage,
         addToCart,

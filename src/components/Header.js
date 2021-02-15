@@ -7,7 +7,7 @@ import { auth } from '../firebase'
 import { useGlobal } from '../context'
 
 const Header = () => {
-  const { searchKeyword, changePage, ...state } = useGlobal()
+  const { searchKeyword, changePage, cartItemsCount, ...state } = useGlobal()
   const [keyword, setKeyword] = useState('')
   const [value, setValue] = useState('')
   const history = useHistory()
@@ -87,7 +87,7 @@ const Header = () => {
           <div className='header__optionBasket'>
             <ShoppingBasketIcon />
             <span className='header__optionLineTwo header__basketCount'>
-              {state.cartItemsCount}
+              {cartItemsCount}
             </span>
           </div>
         </Link>
